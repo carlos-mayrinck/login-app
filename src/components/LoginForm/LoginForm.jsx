@@ -7,7 +7,7 @@ import "./LoginForm.css";
 // COMPONENTS
 import Button from "../Button";
 
-export default function LoginForm({ handleLoginAttempt }) {
+export default function LoginForm({ handleLoginAttempt, errorMessage }) {
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -25,7 +25,7 @@ export default function LoginForm({ handleLoginAttempt }) {
     <form className="login-form" onSubmit={handleSubmitForm}>
       <div className="login-form-field">
         <label htmlFor="login-user" className="login-form-field-label">
-          Digite seu Username
+          Digite seu username
         </label>
         <input
           type="text"
@@ -46,6 +46,7 @@ export default function LoginForm({ handleLoginAttempt }) {
           name=""
           id="login-pass"
           className="login-form-field-input"
+          value={userData.password}
           onChange={event => {setUserData({...userData, password: event.target.value})}}
         />
 
@@ -60,7 +61,7 @@ export default function LoginForm({ handleLoginAttempt }) {
           className="password-toggler"
         />
       </div>
-      <span className="login-form-error-message"></span>
+      <span className="login-form-error-message">{errorMessage}</span>
       <Button>Entrar</Button>
     </form>
   );
